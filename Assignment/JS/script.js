@@ -1,7 +1,13 @@
+// ================================
+// SIGN-UP PAGE
+// ================================
 //Assign form ID to a variable
 const signupForm = document.getElementById("signupForm");
 //Listen for form submission event and call the handleFormSubmit function
-signupForm.addEventListener("submit", handleFormSubmit);
+//Signup form made conditional to prevent errors on the profile page where the form does not exist
+if (signupForm) {
+    signupForm.addEventListener("submit", handleFormSubmit);
+}
 
 function handleFormSubmit(event) {
 
@@ -117,9 +123,21 @@ function handleFormSubmit(event) {
                     document.getElementById("bioError").innerText = ""; // Clear error message if valid
                 }
 
-                // If all fields are valid (if is valid is true), submit the form
+                // If all fields are valid (if is valid is true)
                 if (isValid) {
-                    signupForm.submit();
+                    // Create a user object with the form data
+                    const user = {
+                        fullname: fullname,
+                        studentNumber: studentNumber,
+                        campus: campus,
+                        email: email,
+                        password: password,
+                        interests: interests,
+                        bio: bio
+                    };
+                    // Store the user object in local storage for profile page retrieval
+                    localStorage.setItem('user', JSON.stringify(user));
+
                 }
             }
 
@@ -146,3 +164,16 @@ function handleFormSubmit(event) {
                 const correctpattern = /^\d+$/;
                 return correctpattern.test(input);
             }
+
+
+// ================================
+// PROFILE PAGE
+// ================================
+function displayUserName() {
+    // Retrieve the user object from local storage
+    //convert it back to an object when retrieving it from local storage
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    //Put the user on the profile page
+    document.getElementById("profileName").innerText = `Welcome, ${storedUser.fullname}!`;
+}
+displayUserName(); // Call the function to display the user's name on the profile page
