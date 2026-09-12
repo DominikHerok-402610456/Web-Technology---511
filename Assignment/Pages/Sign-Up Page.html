@@ -36,41 +36,54 @@
         <h2>Sign-up below:</h2>
         <label for="fname">Full name:</label><br>
         <input type="text" id="fname" name="fname">
+        <span id="fnameError"></span>
         <br>
         <br>
 
         <label for="snum">Student Number:</label><br>
         <input type="text" id="snum" name="snum">
+        <span id="snumError"></span>
         <br>
         <br>
 
         <label for="campus">Campus or DL:</label><br>
-        <input type="text" id="campus" name="campus">
+        <!-- Select dropdown for campus or distance learning -->
+        <select id="campus">
+            <option value="">Select an option:</option>
+            <option value="campus">Campus</option>
+            <option value="distance">Distance Learning</option>
+        </select>
+        <span id="campusError"></span>
         <br>
         <br>
 
         <label for="email">Email Address:</label><br>
         <input type="email" id="email" name="email">
+        <span id="emailError"></span>
         <br>
         <br>
 
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password">
+        <span id="passwordError"></span>
         <br>
         <br>
 
         <label for="confirm-password">Confirm Password:</label><br>
         <input type="password" id="confirm-password" name="confirm-password">
+        <span id="confirmPasswordError"></span>
         <br>
         <br>
 
         <label for="interests">Interests:</label><br>
         <input type="text" id="interests" name="interests">
+        <span id="interestsError"></span>
         <br>
         <br>
 
         <label for="bio">Bio:</label><br>
         <textarea id="bio" name="bio"></textarea>
+        <span id="bioError"></span>
         <br>
         <br>
 
@@ -78,7 +91,7 @@
         <br>
 
 
-    </form>
+        </form>
     
   </section>
 </main>
