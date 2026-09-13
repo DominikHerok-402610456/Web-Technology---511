@@ -1,6 +1,8 @@
 // ================================
 // SIGN-UP PAGE
 // ================================
+
+
 //Assign form ID to a variable
 const signupForm = document.getElementById("signupForm");
 //Listen for form submission event and call the handleFormSubmit function
@@ -9,6 +11,7 @@ if (signupForm) {
     signupForm.addEventListener("submit", handleFormSubmit);
 }
 
+
 function handleFormSubmit(event) {
 
                 event.preventDefault(); // Prevent the default form submission behavior
@@ -16,7 +19,8 @@ function handleFormSubmit(event) {
                 // Get the form data and assign to a constant variable.
                 const fullname = document.getElementById('fname').value;
                 const studentNumber = document.getElementById('snum').value;           
-                const campus = document.getElementById('campus').value;              
+                const campus = document.getElementById('campus').value;
+                const campusNames = document.getElementById("campusName");              
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 const confirmPassword = document.getElementById('confirm-password').value;
@@ -130,13 +134,19 @@ function handleFormSubmit(event) {
                         fullname: fullname,
                         studentNumber: studentNumber,
                         campus: campus,
+                        campusName: campusNames.value,
                         email: email,
                         password: password,
                         interests: interests,
                         bio: bio
                     };
                     // Store the user object in local storage for profile page retrieval
+                    //Combine with JSON.stringify to convert the object into a string for storage in local storage
+                    
                     localStorage.setItem('user', JSON.stringify(user));
+
+                    // Redirect to the profile page after successful sign-up
+                    window.location.href = "Profile Page.html";
 
                 }
             }
@@ -165,15 +175,116 @@ function handleFormSubmit(event) {
                 return correctpattern.test(input);
             }
 
+            //Function to unhide campus options when the user selects "Campus" from the dropdown menu
+            function showCampusOptions() {
+
+                const campusSelect = document.getElementById("campus");
+                const campusNames = document.getElementById("campusName");
+
+                if (campusSelect) {
+                    campusSelect.addEventListener("change", function () {
+
+                        if (campusSelect.value === "Campus") {
+                            campusNames.removeAttribute("hidden");
+                        } else {
+                            campusNames.setAttribute("hidden", "hidden");
+                        }
+
+                    });
+                }
+}
+showCampusOptions();
+
 
 // ================================
 // PROFILE PAGE
 // ================================
+
+
+// Heading to display the user's name on the profile page
 function displayUserName() {
     // Retrieve the user object from local storage
-    //convert it back to an object when retrieving it from local storage
+    //convert it back to an js object when retrieving it from local storage
     const storedUser = JSON.parse(localStorage.getItem('user'));
     //Put the user on the profile page
     document.getElementById("profileName").innerText = `Welcome, ${storedUser.fullname}!`;
 }
-displayUserName(); // Call the function to display the user's name on the profile page
+
+
+// Function to display the user's profile information on the profile page as per assignment requirements
+function displayUserProfile() {
+    // Retrieve the user object from local storage
+    //convert it back to an js object when retrieving it from local storage
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    // Change innerText of the HTML elements with the user's profile information
+    document.getElementById("studentNumber").innerText = `Student Number: ${storedUser.studentNumber}`;
+    document.getElementById("campus").innerText = `Campus or Distance Learning: ${storedUser.campus}`;
+    document.getElementById("campusName").innerText = `Campus Name: ${storedUser.campusName}`;
+    document.getElementById("email").innerText = `Email: ${storedUser.email}`;
+    document.getElementById("interests").innerText = `Interests: ${storedUser.interests}`;
+    document.getElementById("bio").innerText = `Bio: ${storedUser.bio}`;
+}
+
+// Check if on profile page to not get null error
+// Call the function to display the user's profile information on the profile page
+// Call the function to display the user's name on the profile page
+if (document.getElementById("profileName")) {
+    displayUserName();
+    displayUserProfile();
+}
+
+// ================================
+// FEED PAGE
+// ================================
+
+//Assign the elements from HTML to variables
+const storedUser = JSON.parse(localStorage.getItem('user')); //feed required to pull contents from the user ie name
+const postContent = document.getElementById("postContent");
+const postButton = document.getElementById("postButton");
+const postsContainer = document.getElementById("postsContainer");
+
+
+
+//Listening for click event and executing function after.
+//function in addEventListener
+postButton.addEventListener("click", function () {
+    //function in addEventListener
+    
+    //New date to capture date
+    const clickTime = new Date();
+    
+    //capture date and time at the click of post
+    const formattedTime = clickTime.toLocaleTimeString();
+    const formattedDate = clickTime.toLocaleDateString();
+    
+    //post content object for storage and output
+    const post = {
+        username: storedUser.fullname,
+        date: formattedDate,
+        timeStamp: formattedTime,
+        postContents: postContent.value
+    };
+
+    const content = postContent.value;
+    if (content.trim() === ""){
+        document.getElementById("postContentError").innerText = "You cannot submit a blank post.";
+    } else {
+        postsContainer.innerHTML += `
+            <div>
+                <strong>${post.username}</strong>
+                <p>${post.postContents}</p>
+                <small>${post.date} ${post.timeStamp}</small>
+            </div>
+        `;
+
+        postContent.value = "";
+
+        document.getElementById("postContentError").innerText = ""
+    }
+
+
+  
+});
+
+
+
