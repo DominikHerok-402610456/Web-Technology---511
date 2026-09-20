@@ -204,7 +204,7 @@ showCampusOptions();
 // Heading to display the user's name on the profile page
 function displayUserName() {
     // Retrieve the user object from local storage
-    //convert it back to an js object when retrieving it from local storage
+    //convert it back to a js object when retrieving it from local storage
     const storedUser = JSON.parse(localStorage.getItem('user'));
     //Put the user on the profile page
     document.getElementById("profileName").innerText = `Welcome, ${storedUser.fullname}!`;
@@ -281,10 +281,26 @@ postButton.addEventListener("click", function () {
 
         document.getElementById("postContentError").innerText = ""
     }
+    
 
+    //Take JSON string of posts, if storedposts doesnt exist yet, create an array. If it does, grab that item and convert to 
+    const storedPosts = localStorage.getItem("posts");
+    let posts;
+    if (storedPosts === null) {
+    posts = [];
+    } else {
+    posts = JSON.parse(storedPosts);
+    }
+    posts.push(post)
+    localStorage.setItem("posts",JSON.stringify(posts) )
+
+    
+
+    
 
   
 });
+
 
 
 
