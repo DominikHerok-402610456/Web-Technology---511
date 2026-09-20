@@ -152,12 +152,14 @@ function handleFormSubmit(event) {
             }
 
             // Function to validate full name format using regex
+            // I want to allow full names with hyphens and multiple words
             function validFullName(fullname) {
                 const correctpattern = /^[A-Za-z]+ [A-Za-z]+(-[A-Za-z]+)?( [A-Za-z]+)?$/;
                 return correctpattern.test(fullname);
             }
 
             // Function to validate email format using regex
+            // Additional functionality for validating email format even though it exists in html
             function validEmail(email) {
                 const correctpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return correctpattern.test(email);
@@ -180,7 +182,7 @@ function handleFormSubmit(event) {
 
                 const campusSelect = document.getElementById("campus");
                 const campusNames = document.getElementById("campusName");
-
+                //Conditional statement for if campus selected, then show campus options else hide
                 if (campusSelect) {
                     campusSelect.addEventListener("change", function () {
 
@@ -243,62 +245,152 @@ const postContent = document.getElementById("postContent");
 const postButton = document.getElementById("postButton");
 const postsContainer = document.getElementById("postsContainer");
 
+//moved to on top of event listener to load before
+//Take a JSON string of posts, if storedposts doesn't exist yet, create an array. If it does, grab that item and convert to
+const storedPosts = localStorage.getItem("posts");
+let posts;
+if (storedPosts === null) {
+posts = [];
+} else {
+posts = JSON.parse(storedPosts);
+}
 
-
-//Listening for click event and executing function after.
-//function in addEventListener
-postButton.addEventListener("click", function () {
+//Postbutton made conditional to prevent errors on the page where the button does not exist
+if (postButton) {
+    //Listening for click event and executing function after.
     //function in addEventListener
-    
-    //New date to capture date
-    const clickTime = new Date();
-    
-    //capture date and time at the click of post
-    const formattedTime = clickTime.toLocaleTimeString();
-    const formattedDate = clickTime.toLocaleDateString();
-    
-    //post content object for storage and output
-    const post = {
-        username: storedUser.fullname,
-        date: formattedDate,
-        timeStamp: formattedTime,
-        postContents: postContent.value
-    };
+    postButton.addEventListener("click", function () {
+        //function in addEventListener
 
-    const content = postContent.value;
-    if (content.trim() === ""){
-        document.getElementById("postContentError").innerText = "You cannot submit a blank post.";
-    } else {
+        //New date to capture date
+        const clickTime = new Date();
+
+        //capture date and time at the click of post
+        const formattedTime = clickTime.toLocaleTimeString();
+        const formattedDate = clickTime.toLocaleDateString();
+
+        //post content objects for storage and output
+        const post = {
+            username: storedUser.fullname,
+            date: formattedDate,
+            timeStamp: formattedTime,
+            postContents: postContent.value,
+            likes: 0
+
+        };
+        const content = postContent.value;
+        if (content.trim() === "") {
+            document.getElementById("postContentError").innerText = "You cannot submit a blank post.";
+        } else {
+            // NEW Post Creation using inner HTML
+            // Will add button as a class as no longer 1 element
+            const newPostIndex = posts.length;
+            postsContainer.innerHTML += `
+                <!-- for implementation of jQuery, assigning index to the length of posts array -->
+                <div data-post-index="${newPostIndex}">
+                    <strong>${post.username}</strong>
+                    <p>${post.postContents}</p>
+                    <small>${post.date} ${post.timeStamp}</small>
+                    <!-- added template literal -->
+                    <span class="likeCount">${post.likes}</span> 
+                    <button class="likeButton">Likes</button>
+                    <button class="DeleteButton">Delete</button>
+                    
+                </div>
+            `;
+
+            postContent.value = "";
+            document.getElementById("postContentError").innerText = ""
+            //Then Push post and store
+            posts.push(post)
+            localStorage.setItem("posts", JSON.stringify(posts))
+            // Fade in the new post
+            $(`[data-post-index="${newPostIndex}"]`).hide().fadeIn();//4.5 FADE IN requirement
+        }
+    });
+}
+
+//Loading saved posts functionality
+// Will add button as a class as no longer 1 element
+if (postsContainer) {
+    for (let i = 0; i < posts.length; i++) {
         postsContainer.innerHTML += `
-            <div>
-                <strong>${post.username}</strong>
-                <p>${post.postContents}</p>
-                <small>${post.date} ${post.timeStamp}</small>
-            </div>
-        `;
+        <!-- for implementation of jQuery, data-post-index counts what post it is for persistent like counters -->
+        <div data-post-index="${i}">
+            <strong>${posts[i].username}</strong>
+            <p>${posts[i].postContents}</p>
+            <small>${posts[i].date} ${posts[i].timeStamp}</small>
+            <span class="likeCount">${posts[i].likes}</span>
+            <button class="likeButton">Likes</button>            
+            <button class="DeleteButton">Delete</button>           
+            
+        </div>
+    `;
 
-        postContent.value = "";
-
-        document.getElementById("postContentError").innerText = ""
     }
-    
+}
 
-    //Take JSON string of posts, if storedposts doesnt exist yet, create an array. If it does, grab that item and convert to 
-    const storedPosts = localStorage.getItem("posts");
-    let posts;
-    if (storedPosts === null) {
-    posts = [];
-    } else {
-    posts = JSON.parse(storedPosts);
+// ================================
+// JQUERY FOR FEED PAGE
+// ================================
+//on like button click event, run this function
+$(postsContainer).on("click", ".likeButton", function () {
+    // %this is the element triggering, parent goes to top html level, then find that ID and change to int
+    let likeCount = parseInt($(this).parent().find(".likeCount").text());
+        //Add 1 to every event
+        likeCount += 1;
+        //change inner text to new like count
+        $(this).parent().find(".likeCount").text(likeCount);
+        // Toggle visual styling
+        $(this).toggleClass("liked");
+        //Counter for likes index
+        let postIndex = $(this).parent().data("post-index");
+         // Update the actual post data
+        posts[postIndex].likes += 1;
+        //save to localstorage
+        localStorage.setItem("posts", JSON.stringify(posts));
+
+
+});
+
+//on delete button click event, run this function
+$(postsContainer).on("click", ".DeleteButton", function () {
+    //at post idex
+    let postIndex = $(this).parent().data("post-index");
+    if (postIndex !== undefined && confirm("Are you sure you want to delete this post?")) {
+        //spice post and only 1
+        posts.splice(postIndex,1)
+        //add to storage
+        localStorage.setItem("posts", JSON.stringify(posts));
+        // delete the post
+        $(this).parent().remove();
+
     }
-    posts.push(post)
-    localStorage.setItem("posts",JSON.stringify(posts) )
-
-    
-
-    
-
-  
+});
+// JQUERY for profile toggle button
+$("#profileDetailsButton").on("click", function () {
+    $("#profileDetails").slideToggle();
+});
+// JQUERY for profile toggle button
+$("nav a").hover(function () {
+    $(this).addClass("nav-hover");
+}, function () {
+    $(this).removeClass("nav-hover");
+});
+// JQUERY for LIVE PROFILE PREVIEW (4.2)
+$("#fname").on("input", function () {
+    $("#previewName").text($(this).val())
+});
+$("#bio").on("input", function () {
+    $("#previewBio").text($(this).val())
+});
+$("#interests").on("input", function () {
+    $("#previewInterests").empty();
+    const interests = $(this).val().split(",");
+    for (let i = 0; i < interests.length; i++) {
+        //create a list and make sure to account for empty spaces and ,
+        $("#previewInterests").append(`<li class="interestTag">${interests[i].trim()}</li>`);
+    }
 });
 
 

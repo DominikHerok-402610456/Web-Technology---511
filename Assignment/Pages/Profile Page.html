@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     
 
@@ -6,15 +6,24 @@
     <!-- This is where information about the page goes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Richfield Connect - Profile Page</title>
-    <h1>Richfield Connect Profile</h1>
-    <p>Manage your profile and settings.</p>
+    <title>Richfield Connect - Profile Page</title>
+    <!-- Alternate style Sheet + Mine -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+
 
 </head>
--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 <body>
-     <nav>
+
+    <header>
+        <h1>Richfield Connect Profile</h1>
+        <p>Manage your profile and settings.</p>
+    </header>
+
+     <nav class="main-nav">
         <a href="Home Page.html">Home</a>
         <a href="Feed Page.html">Feed</a>
         <a href="Profile Page.html">Profile</a>
@@ -22,17 +31,21 @@
         <a href="About Page.html">About</a>
         
     </nav>
--------------------------------------------------------------------------------------------------------------------------------------------------------
-<h2 id="profileName"></h2>
+
+<h2 id="profileNameHeading"></h2>
 
 <main>
-<p id="profileName"></p>
-<p id="studentNumber"></p>
-<p id="campus"></p>
-<p id="campusName"></p>
-<p id="email"></p>
-<p id="interests"></p>
-<p id="bio"></p>
+    <div id="profileDetails">
+        <p id="profileName"></p>
+        <p id="studentNumber"></p>
+        <p id="campus"></p>
+        <p id="campusName"></p>
+        <p id="email"></p>
+        <p id="interests"></p>
+        <p id="bio"></p>
+        </div>
+    <button id="profileDetailsButton">Show Profile Details</button>
+
 
 
 
@@ -63,9 +76,8 @@
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../JS/script.js"></script>
-
 </body>
 
 </html>

@@ -1,0 +1,146 @@
+/* ======================================== */
+/* CSS STYLE SHEET FOR RICHFIELD CONNECT    */
+/* ======================================== */
+
+
+/* ======================================== */
+/* Collection of colours for Richfield Connect */
+:root {
+    --richfield-dark-blue: #043171;
+    --richfield-blue: #0055af;
+    --richfield-light-blue: #027aeb;
+    --richfield-red: #de473c;
+    --text-dark: #222;
+    --background: #f5f7fa;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0 24px;
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+header {
+    padding: 24px 0 10px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    color: var(--richfield-blue);
+}
+h2 {
+    color: var(--richfield-blue);
+    margin-bottom: 15px;
+}
+
+header p {
+    margin: 0;
+    color: var(--text-dark);
+}
+section {
+    margin: 30px 0;
+}
+footer {
+    margin-top: 40px;
+    padding: 25px 0;
+    border-top: 2px solid var(--richfield-blue);
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Navigation */
+.main-nav {
+    background-color: var(--richfield-blue);
+    padding: 12px 20px;
+    margin: 20px 0;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+.social-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: var(--richfield-blue);
+    font-size: 28px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--richfield-dark-blue);
+    transform: scale(1.15);
+}
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Like button styling when the post is liked */
+.liked {
+    background-color: var(--richfield-dark-blue);
+    color: white;
+    font-weight: bold;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Nav Hover enhancements */
+.nav-hover{
+    background-color: var(--richfield-dark-blue);
+    color: white;
+    font-weight: bold;
+}
+/* Additional Tag Styling */
+/* For Multiple Interests */
+#previewInterests {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.interestTag {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 4px;
+    border-radius: 15px;
+    background-color: var(--richfield-light-blue);
+    color: var(--richfield-dark-blue);
+    transition: 0.3s;
+}
+.interestTag:hover {
+    transform: scale(1.05);
+}
+/*-------------------------------------------------------------------------------------------------------------------*/

@@ -1,26 +1,31 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     
 
 <head>
-
-
     <!-- This is where information about the page goes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Richfield Connect - Sign-Up Page</title>
-    <h1>Sign Up for Richfield Connect</h1>
-    <p>Join our community and start connecting with others!</p>
+    <title>Richfield Connect - Sign-Up Page</title>
+    <!-- Alternate style Sheet + Mine -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+
 
 
 </head>
--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 <body>
+    <header>
+        <h1>Richfield Connect Sign-Up</h1>
+        <p>Join our community and start connecting with others!</p>
+    </header>
 
 
 <main>
 
-    <nav>
+    <nav class="main-nav">
         <a href="Home Page.html">Home</a>
         <a href="Feed Page.html">Feed</a>
         <a href="Profile Page.html">Profile</a>
@@ -109,6 +114,12 @@
         </form>
     
   </section>
+    <section id="profilePreview">
+        <p>Name: <span id="previewName"></span></p>
+        <p>Bio: <span id="previewBio"></span></p>
+        <p>Interests:</p>
+        <ul id="previewInterests"></ul>
+    </section>
 </main>
     
 <footer>
@@ -132,7 +143,7 @@
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../JS/script.js"></script>
 
 </body>
