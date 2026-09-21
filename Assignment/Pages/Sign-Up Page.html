@@ -17,127 +17,148 @@
 </head>
 
 <body>
-    <header>
-        <h1>Richfield Connect Sign-Up</h1>
-        <p>Join our community and start connecting with others!</p>
-    </header>
+      <header class="site-header">
 
-
-<main>
+    <a href="Home Page.html" class="brand">
+        <img src="../Images/Richfield%20Logo%20Chopped.png" alt="Richfield Connect">
+    </a>
 
     <nav class="main-nav">
+
         <a href="Home Page.html">Home</a>
         <a href="Feed Page.html">Feed</a>
         <a href="Profile Page.html">Profile</a>
         <a href="Sign-Up Page.html">Sign-Up</a>
         <a href="About Page.html">About</a>
-        
+
     </nav>
-  <section>
-    
 
-    <form id="signupForm">
-        
-        <h2>Sign-up below:</h2>
-        <label for="fname">Full name:</label><br>
-        <input type="text" id="fname" name="fname">
-        <span id="fnameError"></span>
-        <br>
-        <br>
-
-        <label for="snum">Student Number:</label><br>
-        <input type="text" id="snum" name="snum">
-        <span id="snumError"></span>
-        <br>
-        <br>
-
-        <label for="campus">Campus or DL:</label><br>
-        <!-- Select dropdown for campus or distance learning -->
-        <select id="campus">
-            <option value="">Select an option:</option>
-            <option value="Campus">Campus</option>
-            <option value="Distance Learning">Distance Learning</option>
-        </select>
-
-        <!-- Select dropdown for campus name -->
-       <select id="campusName" hidden>
-            <option value="">Select your campus:</option>
-            <option value="Bryanston Campus">Bryanston Campus</option>
-            <option value="Cape Town Campus">Cape Town Campus</option>
-            <option value="Centurion Campus">Centurion Campus</option>
-            <option value="Musgrave Campus">Musgrave Campus</option>
-            <option value="Newtown Junction Campus">Newtown Junction Campus</option>
-            <option value="Polokwane New Premium Campus">Polokwane New Premium Campus</option>
-            <option value="Pretoria Campus">Pretoria Campus</option>
-            <option value="Umhlanga Campus">Umhlanga Campus</option>
-        </select>
+    </header>
 
 
-        <span id="campusError"></span>
-        <br>
-        <br>
+<main>
 
-        <label for="email">Email Address:</label><br>
-        <input type="email" id="email" name="email">
-        <span id="emailError"></span>
-        <br>
-        <br>
+    <!-- identity to section given for css -->
+  <div class="signup-layout">
 
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password">
-        <span id="passwordError"></span>
-        <br>
-        <br>
-
-        <label for="confirm-password">Confirm Password:</label><br>
-        <input type="password" id="confirm-password" name="confirm-password">
-        <span id="confirmPasswordError"></span>
-        <br>
-        <br>
-
-        <label for="interests">Interests:</label><br>
-        <input type="text" id="interests" name="interests">
-        <span id="interestsError"></span>
-        <br>
-        <br>
-
-        <label for="bio">Bio:</label><br>
-        <textarea id="bio" name="bio"></textarea>
-        <span id="bioError"></span>
-        <br>
-        <br>
-
-        <button type="submit">Sign Up</button><br>
-        <br>
+      <section class="signup-card">
 
 
-        </form>
-    
-  </section>
-    <section id="profilePreview">
-        <p>Name: <span id="previewName"></span></p>
-        <p>Bio: <span id="previewBio"></span></p>
-        <p>Interests:</p>
-        <ul id="previewInterests"></ul>
-    </section>
+        <form id="signupForm">
+
+            <h2>Sign-up below:</h2>
+            <label for="fname">Full name:</label><br>
+            <input type="text" id="fname" name="fname">
+            <span id="fnameError"></span>
+
+            <label for="snum">Student Number:</label><br>
+            <input type="text" id="snum" name="snum">
+            <span id="snumError"></span>
+
+            <label for="campus">Campus or DL:</label><br>
+            <!-- Select dropdown for campus or distance learning -->
+            <select id="campus">
+                <option value="">Select an option:</option>
+                <option value="Campus">Campus</option>
+                <option value="Distance Learning">Distance Learning</option>
+            </select>
+
+            <!-- Select dropdown for campus name -->
+           <select id="campusName" hidden>
+                <option value="">Select your campus:</option>
+                <option value="Bryanston Campus">Bryanston Campus</option>
+                <option value="Cape Town Campus">Cape Town Campus</option>
+                <option value="Centurion Campus">Centurion Campus</option>
+                <option value="Musgrave Campus">Musgrave Campus</option>
+                <option value="Newtown Junction Campus">Newtown Junction Campus</option>
+                <option value="Polokwane New Premium Campus">Polokwane New Premium Campus</option>
+                <option value="Pretoria Campus">Pretoria Campus</option>
+                <option value="Umhlanga Campus">Umhlanga Campus</option>
+            </select>
+
+
+            <span id="campusError"></span>
+
+
+            <label for="email">Email Address:</label><br>
+            <input type="email" id="email" name="email">
+            <span id="emailError"></span>
+
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password">
+            <span id="passwordError"></span>
+
+
+            <label for="confirm-password">Confirm Password:</label><br>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <span id="confirmPasswordError"></span>
+
+
+            <label for="interests">Interests:</label><br>
+            <input type="text" id="interests" name="interests">
+            <span id="interestsError"></span>
+
+
+            <label for="bio">Bio:</label><br>
+            <textarea id="bio" name="bio"></textarea>
+            <span id="bioError"></span>
+
+
+            <button type="submit">Sign Up</button><br>
+
+
+
+            </form>
+
+      </section>
+        <section id="profilePreview">
+            <h2>Live Profile Preview</h2>
+
+                <p><strong>Name:</strong> <span id="previewName"></span></p>
+                <p><strong>Bio:</strong> <span id="previewBio"></span></p>
+                <p><strong>Interests:</strong></p>
+
+            <ul id="previewInterests"></ul>
+</section>
+  </div>
 </main>
     
 <footer>
-  <p>&copy; © 2026. All rights reserved.</p>
-  <h1>Connect with us on social media:</h1>
-   <nav>
-        <a href="https://www.richfield.ac.za">Richfield College</a>
-        <a href="https://www.facebook.com/thisisrichfield/">Facebook</a>
-        <a href="https://www.instagram.com/thisisrichfield/">Instagram</a>
-        <a href="https://twitter.com/thisisrichfield">Twitter</a>
-        <a href="https://www.linkedin.com/school/richfield-college/">LinkedIn</a>
-        <a href="https://www.youtube.com/@thisisrichfield">YouTube</a>
-        <a href="https://www.tiktok.com/@thisisrichfield">TikTok</a>
 
-    </nav>
+  <h2>Connect with us on social media:</h2>
+       <div class="social-links">
+
+            <a href="https://www.facebook.com/thisisrichfield/" target="_blank" rel="noopener">
+                <img src="../Images/White/Facebook_white.svg" alt="Facebook">
+            </a>
+
+            <a href="https://www.instagram.com/thisisrichfield/" target="_blank" rel="noopener">
+                <img src="../Images/White/Instagram_white.svg" alt="Instagram">
+            </a>
+
+            <a href="https://twitter.com/thisisrichfield" target="_blank" rel="noopener">
+                <img src="../Images/White/Twitter_white.svg" alt="X">
+            </a>
+
+            <a href="https://www.linkedin.com/school/richfield-college/" target="_blank" rel="noopener">
+                <img src="../Images/White/LinkedIN_white.svg" alt="LinkedIn">
+            </a>
+
+            <a href="https://www.youtube.com/@thisisrichfield" target="_blank" rel="noopener">
+                <img src="../Images/White/Youtube_white.svg" alt="YouTube">
+            </a>
+
+            <a href="https://www.tiktok.com/@thisisrichfield" target="_blank" rel="noopener">
+                <img src="../Images/White/Tik Tok_white.svg" alt="TikTok">
+            </a>
+
+        </div>
 
     <h2>Contact Information:</h2>
-    <a href="https://www.richfield.ac.za/contact">Contact Us</a>
+    <a href="https://www.richfield.ac.za/contact" class="contact-button">
+    Contact Us
+    </a>
 
 </footer>
 

@@ -3,7 +3,6 @@
 /* ======================================== */
 
 
-/* ======================================== */
 /* Collection of colours for Richfield Connect */
 :root {
     --richfield-dark-blue: #043171;
@@ -13,22 +12,76 @@
     --text-dark: #222;
     --background: #f5f7fa;
 }
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Header Styling */
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    height: 68px;
+    padding: 8px 20px;
+    background-color: var(--richfield-blue);
+    border-radius: 25px;
+    margin: 10px 0 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand img {
+    width: 170px;
+    height: auto;
+    display: block;
+}
+
+.site-header .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.site-header .main-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    font-weight: bold;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Main Page Styling */
 * {
     box-sizing: border-box;
 }
 
 body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
     margin: 0;
     padding: 0 24px;
     font-family: Arial, sans-serif;
-    background-color: var(--background);
     color: var(--text-dark);
     line-height: 1.6;
+
+
+    background: linear-gradient(
+        135deg,
+        #dcecff,
+        #f8fbff,
+        #ffffff
+    );
 }
 main {
     width: 90%;
     max-width: 1100px;
     margin: 0 auto;
+    flex: 1;
 }
 header {
     padding: 24px 0 10px;
@@ -50,72 +103,27 @@ header p {
 section {
     margin: 30px 0;
 }
+/*-------------------------------------------------------------------------------------------------------------------*/
+
 footer {
-    margin-top: 40px;
-    padding: 25px 0;
-    border-top: 2px solid var(--richfield-blue);
-}
-/*-------------------------------------------------------------------------------------------------------------------*/
-/* Navigation */
-.main-nav {
-    background-color: var(--richfield-blue);
-    padding: 12px 20px;
-    margin: 20px 0;
+    margin-top: 30px;
+    padding: 15px 0;
+    border-top: 2px solid var(--richfield-dark-blue);
 }
 
-.main-nav a {
-    color: white;
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: bold;
-}
-/*-------------------------------------------------------------------------------------------------------------------*/
-.social-links {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    flex-wrap: wrap;
+footer h1 {
+    font-size: 24px;
+    margin: 10px 0;
 }
 
-.social-links a {
-    color: var(--richfield-blue);
-    font-size: 28px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.social-links a:hover {
+footer h2 {
+    font-size: 20px;
     color: var(--richfield-dark-blue);
-    transform: scale(1.15);
+    margin: 20px 0 10px;
 }
 
-/*-------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*-------------------------------------------------------------------------------------------------------------------*/
-/* Like button styling when the post is liked */
-.liked {
-    background-color: var(--richfield-dark-blue);
-    color: white;
-    font-weight: bold;
+footer p {
+    margin: 0 0 15px;
 }
 /*-------------------------------------------------------------------------------------------------------------------*/
 /* Nav Hover enhancements */
@@ -137,10 +145,416 @@ footer {
     margin: 4px;
     border-radius: 15px;
     background-color: var(--richfield-light-blue);
-    color: var(--richfield-dark-blue);
+    color: white;
     transition: 0.3s;
+}
+
+#previewInterests .interestTag {
+    color: white;
 }
 .interestTag:hover {
     transform: scale(1.05);
 }
+
 /*-------------------------------------------------------------------------------------------------------------------*/
+/* Feed - Post Composer */
+#postComposer {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#postComposer h2 {
+    margin-top: 0;
+    color: var(--richfield-dark-blue);
+}
+
+#postContent {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+#postContent:focus {
+    outline: none;
+    border: 2px solid var(--richfield-blue);
+}
+
+#postContentError {
+    display: block;
+    margin-top: 5px;
+    color: var(--richfield-red);
+}
+
+#postButton {
+    display: block;
+    margin: 15px 0 0 auto;
+    padding: 10px 22px;
+    background-color: var(--richfield-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#postButton:hover {
+    background-color: var(--richfield-dark-blue);
+    transform: translateY(-2px);
+}
+
+.post-card {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.post-card strong {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--richfield-dark-blue);
+    font-size: 18px;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+.post-card p {
+    margin: 0 0 15px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.post-card small {
+    display: block;
+    margin-bottom: 12px;
+    color: #666;
+}
+
+.post-card button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.post-card button:hover {
+    transform: translateY(-1px);
+}
+
+.post-card .likeButton {
+    background-color: var(--richfield-blue);
+    color: white;
+}
+
+.post-card .deleteButton {
+    background-color: #eeeeee;
+    color: var(--text-dark);
+    margin-left: 5px;
+}
+
+.post-card .likeCount {
+    display: inline-block;
+    margin-right: 6px;
+    font-weight: bold;
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Signup Card Styling */
+.signup-card {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.signup-card h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+#bio {
+    width: 100%;
+    max-width: 500px;
+    height: 120px;
+    resize: vertical;
+}
+.signup-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.signup-layout .signup-card {
+    flex: 1;
+}
+
+#profilePreview {
+    flex: 1;
+    margin: 30px 0;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.signup-card input,
+.signup-card select {
+    width: 100%;
+    max-width: 500px;
+    padding: 8px;
+}
+.signup-card input:focus,
+.signup-card select:focus,
+.signup-card textarea:focus {
+    outline: none;
+    border: 2px solid var(--richfield-blue);
+}
+.signup-card button {
+    padding: 10px 22px;
+    background-color: var(--richfield-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.signup-card label {
+    display: inline-block;
+    color: var(--richfield-dark-blue);
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+/* Hover effect for the button */
+.signup-card button:hover {
+    background-color: var(--richfield-dark-blue);
+    transform: translateY(-2px);
+}
+/* Error message requirement for form*/
+span[id$="Error"] {
+    display: block;
+    color: var(--richfield-red);
+    font-size: 13px;
+    margin-top: 3px;
+    margin-bottom: 8px;
+}
+.invalid {
+    border: 2px solid var(--richfield-red);
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Navigation */
+.main-nav {
+    background-color: var(--richfield-blue);
+    padding: 12px 20px;
+    margin: 20px 0;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Home and About Page Styling*/
+.home-intro,
+.about-intro,
+.about-section {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.home-intro h2,
+.about-intro h2,
+.about-section h2 {
+    margin-top: 0;
+    color: var(--richfield-dark-blue);
+}
+
+.home-features {
+    max-width: 900px;
+    margin: 30px auto;
+    display: flex;
+    gap: 20px;
+}
+
+.feature-card {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+    color: var(--richfield-blue);
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Social Media Links + Section Styling */
+.social-links a {
+    width: 38px;
+    height: 38px;
+    background-color: var(--richfield-blue);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color: var(--richfield-blue);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-links img {
+    width: 20px;
+    height: 20px;
+}
+
+.social-links a:hover {
+    background-color: var(--richfield-dark-blue);
+    transform: scale(1.1);
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Like button styling when the post is liked */
+.liked {
+    background-color: var(--richfield-dark-blue);
+    color: white;
+    font-weight: bold;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/*Profile Preview Styling */
+#profileName {
+    color: var(--richfield-dark-blue);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#profileDetails strong {
+    color: var(--richfield-dark-blue);
+}
+
+#profileCard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#profileDetails p {
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#profileDetails strong {
+    color: var(--richfield-dark-blue);
+}
+
+#profileDetails p:last-child {
+    border-bottom: none;
+}
+#bio {
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#profileDetailsButton {
+    display: block;
+    margin: 25px auto 0;
+    padding: 10px 20px;
+    background-color: var(--richfield-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+.contact-button {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: var(--richfield-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contact-button:hover {
+    background-color: var(--richfield-dark-blue);
+    transform: translateY(-2px);
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Mobile CSS goes LAST */
+@media (max-width: 600px) {
+
+    body {
+        padding: 0 12px;
+    }
+
+    .main-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-nav a {
+        margin-right: 0;
+    }
+
+    .signup-layout {
+        flex-direction: column;
+    }
+
+    .signup-layout .signup-card,
+    #profilePreview {
+        width: 100%;
+    }
+
+
+    .home-features {
+        flex-direction: column;
+    }
+
+}
