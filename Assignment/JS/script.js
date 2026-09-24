@@ -83,6 +83,7 @@ if (studentNumberInput) {
 function validateCampus (){
 
     const campus = document.getElementById("campus").value;
+    const campusName = document.getElementById("campusName").value;
 
     // Validate Campus - Drop down with options for campus or DL?
     //Drop down menu with options for campus or distance learning. If no option is selected, display an error message.
@@ -92,10 +93,17 @@ function validateCampus (){
         document.getElementById("campus").classList.add("invalid");
         return false;
 
+    } else if (campus === "Campus" && campusName === "") {
+        document.getElementById("campusNameError").innerText =  "Please select your campus name.";
+        document.getElementById("campusName").classList.add("invalid");
+        return false;
+
     } else {
         // Clear error message if valid
         document.getElementById("campusError").innerText = "";
         document.getElementById("campus").classList.remove("invalid");
+        document.getElementById("campusNameError").innerText = "";
+        document.getElementById("campusName").classList.remove("invalid");
         return true;
     }
 }
@@ -103,6 +111,12 @@ const campusInput = document.getElementById("campus");
 
 if (campusInput) {
     campusInput.addEventListener("change", validateCampus);
+}
+
+const campusNameInput = document.getElementById("campusName");
+
+if (campusNameInput) {
+    campusNameInput.addEventListener("change", validateCampus);
 }
 
 //--------------------------------------------------------------------------------------------------------------------
