@@ -1,8 +1,11 @@
 # Richfield Connect
 
+Hi :)
+
 Richfield Connect is a student community platform developed for the Web Technology 511 assignment.
 Students can create a profile, make posts, like posts and delete posts.
 
+Please also find my project here for your reference: https://github.com/DominikHerok-402610456/Web-Technology---511
 ## Pages
 
 - **Home** – Introduction to Richfield Connect and its main features.
@@ -65,7 +68,6 @@ Web-Technology---511/
 │       ├── Sign-Up Page.html
 │       ├── Profile Page.html
 │       └── Feed Page.html
-├── Test Code/
 └── README.md
 
 

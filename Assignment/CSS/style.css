@@ -533,10 +533,12 @@ span[id$="Error"] {
         padding: 0 12px;
     }
 
-    .main-nav {
+   .main-nav {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .main-nav a {
@@ -555,6 +557,17 @@ span[id$="Error"] {
 
     .home-features {
         flex-direction: column;
+    }
+
+    .site-header {
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+}
+
+    .brand img {
+        width: 140px;
     }
 
 }

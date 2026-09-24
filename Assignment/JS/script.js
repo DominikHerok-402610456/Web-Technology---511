@@ -11,6 +11,250 @@ if (signupForm) {
     signupForm.addEventListener("submit", handleFormSubmit);
 }
 
+//--------------------------------------------------------------------------------------------------------------------
+//moved validation to external functions
+// Full name validation to also include when the user is typing
+function validateFullName() {
+    const fullname = document.getElementById("fname").value;
+
+    // Find HTML element of fnameError and change innertext to error message
+    if (fullname === "") {
+        document.getElementById("fnameError").innerText = "Please enter a name and surname.";
+        document.getElementById("fname").classList.add("invalid");
+        return false;
+    //validate at least first name and last name with space
+    } else if (!validFullName(fullname)) {
+        document.getElementById("fnameError").innerText = "Please enter your full name with a space.";
+        document.getElementById("fname").classList.add("invalid");
+
+        return false;
+
+    } else {
+        //remove invalid class from input list when true
+        document.getElementById("fnameError").innerText = "";
+        document.getElementById("fname").classList.remove("invalid");
+
+        return true;
+    }
+}
+const fnameInput = document.getElementById("fname");
+
+if (fnameInput) {
+    fnameInput.addEventListener("input", validateFullName);
+}
+//--------------------------------------------------------------------------------------------------------------------
+function validateStudentNumber() {
+
+    //moved validation to external functions
+    const studentNumber = document.getElementById("snum").value;
+
+    // Validate Student Number
+   //Check if empty
+    if (studentNumber === "") {
+        document.getElementById("snumError").innerText = "Please enter your student number.";
+        document.getElementById("snum").classList.add("invalid");
+        return false;
+    }
+
+    //Check if length is not 9 digits
+    else if (studentNumber.length !== 9) {
+        document.getElementById("snumError").innerText = "Please enter a valid student number (9 digits e.g 123456789).";
+        document.getElementById("snum").classList.add("invalid");
+        return false;
+    // check for valid input using regex
+    } else if (!validStudentNum(studentNumber)) {
+        document.getElementById("snumError").innerText = "Please enter a valid student number (only digits e.g 123456789).";
+        document.getElementById("snum").classList.add("invalid");
+        return false;
+
+    } else {
+        // Clear error message if valid
+        document.getElementById("snumError").innerText = "";
+        document.getElementById("snum").classList.remove("invalid");
+        return true;
+   }
+}
+const studentNumberInput = document.getElementById("snum");
+
+if (studentNumberInput) {
+    studentNumberInput.addEventListener("input", validateStudentNumber);
+}
+//--------------------------------------------------------------------------------------------------------------------
+function validateCampus (){
+
+    const campus = document.getElementById("campus").value;
+
+    // Validate Campus - Drop down with options for campus or DL?
+    //Drop down menu with options for campus or distance learning. If no option is selected, display an error message.
+
+    if (campus === "") {
+        document.getElementById("campusError").innerText = "Please select your campus or distance learning option.";
+        document.getElementById("campus").classList.add("invalid");
+        return false;
+
+    } else {
+        // Clear error message if valid
+        document.getElementById("campusError").innerText = "";
+        document.getElementById("campus").classList.remove("invalid");
+        return true;
+    }
+}
+const campusInput = document.getElementById("campus");
+
+if (campusInput) {
+    campusInput.addEventListener("change", validateCampus);
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------
+function validateEmail() {
+
+    const email = document.getElementById("email").value;
+
+    //Validate Email Address
+    if (email === "") {
+        document.getElementById("emailError").innerText = "Please enter your email address.";
+        document.getElementById("email").classList.add("invalid");
+        return false;
+    //Check for standard email format using regex
+    } else if (!validEmail(email)) {
+        document.getElementById("emailError").innerText = "Please enter a valid email address.";
+        document.getElementById("email").classList.add("invalid");
+        return false;
+    } else {
+        document.getElementById("emailError").innerText = ""; // Clear error message if valid
+        document.getElementById("email").classList.remove("invalid");
+        return true;
+    }
+}
+const emailInput = document.getElementById("email");
+
+if (emailInput) {
+    emailInput.addEventListener("input", validateEmail);
+}
+//--------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------
+function validatePassword(){
+
+    const password = document.getElementById("password").value;
+
+    // Validate Password
+    if (password === "") {
+        document.getElementById("passwordError").innerText = "Please enter a password.";
+        document.getElementById("password").classList.add("invalid");
+        return false;
+    //Check for minimum length of 8 characters
+    } else if (password.length < 8) {
+        document.getElementById("passwordError").innerText = "Password must be at least 8 characters long.";
+        document.getElementById("password").classList.add("invalid");
+        return false;
+    } else {
+        document.getElementById("passwordError").innerText = ""; // Clear error message if valid
+        document.getElementById("password").classList.remove("invalid");
+        return true;
+    }
+}
+const passwordInput = document.getElementById("password");
+
+if (passwordInput) {
+    passwordInput.addEventListener("input", validatePassword);
+}
+//--------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------
+function validateConfirmPassword(){
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+
+    // Validate Confirm Password
+    if (confirmPassword === "") {
+        document.getElementById("confirmPasswordError").innerText = "Please confirm your password.";
+        document.getElementById("confirmPassword").classList.add("invalid");
+        return false;
+    //Check if password and confirm password match
+    } else if (password !== confirmPassword) {
+        document.getElementById("confirmPasswordError").innerText = "Passwords do not match.";
+        document.getElementById("confirmPassword").classList.add("invalid");
+        return false;
+    } else {
+        document.getElementById("confirmPasswordError").innerText = ""; // Clear error message if valid
+        document.getElementById("confirmPassword").classList.remove("invalid");
+        return true;
+    }
+}
+const confirmPasswordInput = document.getElementById("confirmPassword");
+
+if (confirmPasswordInput) {
+    confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+}
+//--------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------
+function validateInterests() {
+    // Validate Interests
+    const interests = document.getElementById("interests").value;
+
+
+
+    //Added .trim() to check for whitespace only input
+    if (interests.trim() === "") {
+        document.getElementById("interestsError").innerText = "Please enter your interests.";
+        document.getElementById("interests").classList.add("invalid");
+        return false;
+    } else if (isOnlyNumbers(interests)) {
+        document.getElementById("interestsError").innerText = "Please enter valid interests that do not consist of only numbers.";
+        document.getElementById("interests").classList.add("invalid");
+        return false;
+    } else {
+        document.getElementById("interestsError").innerText = ""; // Clear error message if valid
+        document.getElementById("interests").classList.remove("invalid");
+        return true;
+    }
+}
+const interestsInput = document.getElementById("interests");
+
+if (interestsInput) {
+    interestsInput.addEventListener("input", validateInterests);
+}
+//--------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------
+function validateBio(){
+
+    // Validate Bio
+    const bio = document.getElementById("bio").value;
+
+    if (bio.trim() === "") {
+        document.getElementById("bioError").innerText = "Please enter a bio.";
+        document.getElementById("bio").classList.add("invalid");
+        return false;
+    } else if (isOnlyNumbers(bio)) {
+        document.getElementById("bioError").innerText = "Please enter a valid bio that does not consist of only numbers.";
+        document.getElementById("bio").classList.add("invalid");
+        return false;
+    } else {
+        document.getElementById("bioError").innerText = ""; // Clear error message if valid
+        document.getElementById("bio").classList.remove("invalid");
+        return true;
+    }
+
+}
+const bioInput = document.getElementById("bio");
+
+if (bioInput) {
+    bioInput.addEventListener("input", validateBio);
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+
 
 function handleFormSubmit(event) {
 
@@ -23,136 +267,54 @@ function handleFormSubmit(event) {
                 const campusNames = document.getElementById("campusName");              
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirm-password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
                 const interests = document.getElementById('interests').value;
                 const bio = document.getElementById('bio').value;
                 
                 let isValid = true; // Flag to track form validity
 
                 //Validate field specific requirements
+
                 // Validate Full Name
-               if (fullname === "") {
-                isValid = false;
-                //Find HTML element with id of fnameError and change innerText to error message
-                document.getElementById("fnameError").innerText = "Please enter a name and surname.";
-                document.getElementById("fname").classList.add("invalid");
-                // Validate at least first name and last name with a space
-                } else if (!validFullName(fullname)) {
+               if (!validateFullName()) {
                     isValid = false;
-                    document.getElementById("fnameError").innerText = "Please enter your full name with a space.";
-                    // Add invalid class to the input field class list for CSS styling requirement
-                    document.getElementById("fname").classList.add("invalid");
-                } else {
-                   //remove invalid class from input field class list when true
-                    document.getElementById("fnameError").innerText = "";
-                    document.getElementById("fname").classList.remove("invalid");
-}
-               // Validate Student Number
-               //Check if empty
-                if (studentNumber === "") {
-                    isValid = false;
-                    document.getElementById("snumError").innerText = "Please enter your student number.";
-                    document.getElementById("snum").classList.add("invalid");
                 }
-                //Check if length is not 9 digits
-                else if (studentNumber.length !== 9) {
-                    isValid = false;
-                    document.getElementById("snumError").innerText = "Please enter a valid student number (9 digits e.g 123456789).";
-                    document.getElementById("snum").classList.add("invalid");
-                // check for valid input using regex
-                } else if (!validStudentNum(studentNumber)) {
-                    isValid = false;
-                    document.getElementById("snumError").innerText = "Please enter a valid student number (only digits e.g 123456789).";
-                    document.getElementById("snum").classList.add("invalid");
-                } else {
-                    document.getElementById("snumError").innerText = "";// Clear error message if valid
-                    document.getElementById("snum").classList.remove("invalid");
+
+               // Validate Student Number
+               if(!validateStudentNumber()){
+                   isValid = false;
                }
 
-                // Validate Campus - Drop down with options for campus or DL?
-                //Drop down menu with options for campus or distance learning. If no option is selected, display an error message.
-                if (campus === "") {
+               // Validate Campus
+               if (!validateCampus()) {
                     isValid = false;
-                    document.getElementById("campusError").innerText = "Please select your campus or distance learning option.";
-                    document.getElementById("campus").classList.add("invalid");
-                } else {
-                    document.getElementById("campusError").innerText = "";// Clear error message if valid
-                    document.getElementById("campus").classList.remove("invalid");
-                }
+               }
 
-                //Validate Email Address
-                if (email === "") {
+               //Validate Email
+               if (!validateEmail()) {
                     isValid = false;
-                    document.getElementById("emailError").innerText = "Please enter your email address.";
-                    document.getElementById("email").classList.add("invalid");
-                //Check for standard email format using regex
-                } else if (!validEmail(email)) {
-                    isValid = false;
-                    document.getElementById("emailError").innerText = "Please enter a valid email address.";
-                    document.getElementById("email").classList.add("invalid");
-                } else {
-                    document.getElementById("emailError").innerText = ""; // Clear error message if valid
-                    document.getElementById("email").classList.remove("invalid");
-                }
+               }
 
-                // Validate Password
-                if (password === "") {
+               //Validate Password
+               if (!validatePassword()) {
                     isValid = false;
-                    document.getElementById("passwordError").innerText = "Please enter a password.";
-                    document.getElementById("password").classList.add("invalid");
-                //Check for minimum length of 8 characters
-                } else if (password.length < 8) {
-                    isValid = false;
-                    document.getElementById("passwordError").innerText = "Password must be at least 8 characters long.";
-                    document.getElementById("password").classList.add("invalid");
-                } else {
-                    document.getElementById("passwordError").innerText = ""; // Clear error message if valid
-                    document.getElementById("password").classList.remove("invalid");
-                }
+               }
 
-                // Validate Confirm Password
-                if (confirmPassword === "") {
+               //Validate Confirm Password
+               if (!validateConfirmPassword()) {
                     isValid = false;
-                    document.getElementById("confirmPasswordError").innerText = "Please confirm your password.";
-                    document.getElementById("confirm-password").classList.add("invalid");
-                //Check if password and confirm password match
-                } else if (password !== confirmPassword) {
-                    isValid = false;
-                    document.getElementById("confirmPasswordError").innerText = "Passwords do not match.";
-                    document.getElementById("confirm-password").classList.add("invalid");
-                } else {
-                    document.getElementById("confirmPasswordError").innerText = ""; // Clear error message if valid
-                    document.getElementById("confirm-password").classList.remove("invalid");
-                }
+               }
 
-                // Validate Interests
-                //Added .trim() to check for whitespace only input
-                if (interests.trim() === "") {
+               //Validate Interests
+               if (!validateInterests()) {
                     isValid = false;
-                    document.getElementById("interestsError").innerText = "Please enter your interests.";
-                    document.getElementById("interests").classList.add("invalid");
-                } else if (isOnlyNumbers(interests)) {
-                    isValid = false;
-                    document.getElementById("interestsError").innerText = "Please enter valid interests that do not consist of only numbers.";
-                    document.getElementById("interests").classList.add("invalid");
-                } else {
-                    document.getElementById("interestsError").innerText = ""; // Clear error message if valid
-                    document.getElementById("interests").classList.remove("invalid");
-                }
+               }
 
-                // Validate Bio
-                if (bio.trim() === "") {
+               //Validate Bio
+               if (!validateBio()) {
                     isValid = false;
-                    document.getElementById("bioError").innerText = "Please enter a bio.";
-                    document.getElementById("bio").classList.add("invalid");
-                } else if (isOnlyNumbers(bio)) {
-                    isValid = false;
-                    document.getElementById("bioError").innerText = "Please enter a valid bio that does not consist of only numbers.";
-                    document.getElementById("bio").classList.add("invalid");
-                } else {
-                    document.getElementById("bioError").innerText = ""; // Clear error message if valid
-                    document.getElementById("bio").classList.remove("invalid");
-                }
+               }
+
 
                 // If all fields are valid (if is valid is true)
                 if (isValid) {
@@ -391,6 +553,16 @@ $(postsContainer).on("click", ".DeleteButton", function () {
         localStorage.setItem("posts", JSON.stringify(posts));
         // delete the post
         $(this).parent().remove();
+
+        //Update HTML attribute for array/page disagreement
+        $(postsContainer).children().each(function (index) {
+
+            //updates the actual HTML attribute:
+            $(this).attr("data-post-index", index);
+            //updates the value jQuery has cached for .data()
+            $(this).data("post-index", index);
+
+});
 
     }
 });
